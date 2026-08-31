@@ -1,0 +1,16 @@
+.env
+.DS_Store
+*.local
+.venv/
+node_modules/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+release/
+sources/
+AGENTS.md
+submission/qa_render/
+submission/*_draft.docx
