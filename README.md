@@ -109,7 +109,7 @@ public/         Complete responsive frontend
 test/           Unit, API integration, and UI contract tests
 evaluation/     Twelve adversarial fixtures and executable evaluation runner
 samples/        Fictional, upload-ready demonstration forms
-docs/           Project write-up, architecture, evaluation notes, and judge guide
+docs/           Project write-up, architecture, and evaluation notes
 ```
 
 ## Safety boundary
@@ -121,7 +121,6 @@ PaperworkPilot provides navigation—not legal, tax, medical, immigration, finan
 - [Project documentation](docs/PROJECT.md)
 - [Technical architecture](docs/ARCHITECTURE.md)
 - [Evaluation report](docs/EVALUATION.md)
-- [Judge guide](docs/JUDGE_GUIDE.md)
 - [Live application and demo instructions](LIVE_DEMO.md)
 
 > GitHub upload warning: extract the release archive and upload its **contents** so `agent/`, `backend/`, `public/`, `test/`, and `README.md` appear at the repository root. Do not upload the ZIP as a single repository file.
