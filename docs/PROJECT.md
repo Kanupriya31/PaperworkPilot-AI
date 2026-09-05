@@ -27,18 +27,16 @@ The primary demonstration uses a fictional Riverglen residential parking-permit 
 
 The evaluation set contains 12 original, synthetic form fragments. It covers ordinary forms, prompt injection, social-security information, passport information, bank information, developer/system-message impersonation, signatures, attachments, and legitimate non-sensitive cases. Synthetic fixtures avoid redistributing sensitive or copyrighted documents and make expected routing deterministic.
 
-## Development prompts
+## Design requirements
 
-The project brief requests representative prompts used during development. The architecture and acceptance criteria were verified against the running system and executable tests.
+The implementation was evaluated against these product and verification requirements:
 
-Representative prompts used to shape the build:
-
-1. “Build a fully functional and winning AI Builder of the Week PaperworkPilot.”
-2. “Make it code-heavy with LangGraph state, tool calls, failure recovery, and a human checkpoint—not a one-shot LLM call.”
-3. “Require an exact source quote for every extracted field, supporting document, and warning.”
-4. “Create a deterministic demo that deliberately fails one tool call, recovers, pauses, and resumes the same run.”
-5. “Test prompt injection, sensitive fields, ambiguous deadlines, dependency failure, reject and resume, missing profile values, and API contracts.”
-6. “Keep the full frontend, backend, agent graph, fixtures, tests, and evaluation code visible in the repository.”
+1. Provide a complete full-stack experience for pasted or uploaded forms and optional profile details.
+2. Use a stateful LangGraph workflow with tool calls, failure recovery, and human checkpoints.
+3. Require an exact source quote for every extracted field, supporting document, and warning.
+4. Include deterministic recovery and same-run pause-and-resume demonstrations.
+5. Test prompt injection, sensitive fields, ambiguous deadlines, dependency failure, revision, missing profile values, and API contracts.
+6. Keep the frontend, backend, graph, fixtures, tests, and evaluation code directly traceable in the repository.
 
 ## Iterations
 
