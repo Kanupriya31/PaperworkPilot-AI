@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PaperworkPilot">
+  <rect width="64" height="64" rx="16" fill="#0b2f29"/>
+  <path d="M18 13h22l8 8v30H18z" fill="#f8fbf7"/>
+  <path d="M40 13v10h8" fill="none" stroke="#b8e94f" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m25 36 5 5 10-12" fill="none" stroke="#168064" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

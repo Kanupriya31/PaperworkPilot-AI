@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PaperworkPilot turns confusing forms into clear answers, document lists, and submission checklists.">
+  <meta name="theme-color" content="#0b2f29">
+  <meta property="og:title" content="PaperworkPilot AI">
+  <meta property="og:description" content="An evidence-first paperwork agent with retries, state, and human approval.">
+  <meta property="og:type" content="website">
+  <title>PaperworkPilot AI</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="site-header shell">
+    <a class="brand" href="#" aria-label="PaperworkPilot home">
+      <span class="brand-mark" aria-hidden="true"><span>✓</span></span>
+      <span>Paperwork<span>Pilot</span></span>
+    </a>
+    <div class="header-note"><span></span> Session memory · Human approved</div>
+  </header>
+
+  <main>
+    <section id="intake-view" class="shell intake-view">
+      <div class="hero">
+        <div class="eyebrow"><span>✦</span> Your evidence-first paperwork agent</div>
+        <h1>From confusing form<br>to a <em>verified action plan.</em></h1>
+        <p>PaperworkPilot reads every requirement, checks it against source evidence, finds what’s missing, and pauses for your approval before building the final plan.</p>
+        <div class="trust-row"><span>✓ Evidence-linked requirements</span><span>✓ Never invents answers</span><span>✓ Human approval required</span></div>
+      </div>
+
+      <div class="workspace-grid">
+        <section class="card intake-card" aria-labelledby="upload-title">
+          <div class="step-label"><span>1</span><div><h2 id="upload-title">Add your form</h2><p>PDF, photo, text file, or pasted text</p></div></div>
+          <div class="input-tabs" role="tablist" aria-label="Form input method">
+            <button class="tab active" data-tab="upload" role="tab" aria-selected="true">Upload a file</button>
+            <button class="tab" data-tab="paste" role="tab" aria-selected="false">Paste text</button>
+          </div>
+          <div id="upload-panel" class="tab-panel">
+            <label id="drop-zone" class="drop-zone" for="form-file">
+              <input id="form-file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.md" hidden>
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <strong>Drop your form here</strong>
+              <span>or <u>choose a file</u> · up to 10 MB</span>
+              <small>PDF · PNG · JPG · WEBP · TXT</small>
+            </label>
+            <div id="file-chip" class="file-chip hidden"></div>
+          </div>
+          <div id="paste-panel" class="tab-panel hidden">
+            <label class="sr-only" for="form-text">Paste form text</label>
+            <textarea id="form-text" placeholder="Paste the form instructions and fields here…"></textarea>
+          </div>
+
+          <div class="profile-heading">
+            <div class="step-label compact"><span>2</span><div><h2>Add details you already know</h2><p>Optional — used only to suggest answers</p></div></div>
+            <button id="toggle-profile" class="text-button" aria-expanded="true">Hide</button>
+          </div>
+          <div id="profile-fields" class="profile-grid">
+            <label>Full name<input id="fullName" autocomplete="name" placeholder="e.g. Maya Johnson"></label>
+            <label>Date of birth<input id="dateOfBirth" type="date" autocomplete="bday"></label>
+            <label class="wide">Home address<input id="address" autocomplete="street-address" placeholder="Street, unit, city, state, ZIP"></label>
+            <label>Email<input id="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+            <label>Phone<input id="phone" type="tel" autocomplete="tel" placeholder="(555) 555-0100"></label>
+          </div>
+
+          <div id="error-message" class="error-message hidden" role="alert"></div>
+          <button id="analyze-button" class="primary-button"><span>Analyze my form</span><b aria-hidden="true">→</b></button>
+        <p class="privacy-line">🔒 Your progress is held only in temporary session memory so the agent can pause and resume. PaperworkPilot provides workflow guidance, not legal or eligibility advice.</p>
+        </section>
+
+        <aside class="demo-card">
+          <div class="demo-badge"><span id="demo-badge">FLAGSHIP</span> · LIVE DEMO</div>
+          <div class="mini-doc" aria-hidden="true"><span></span><span></span><span></span><i>✓</i></div>
+          <h2>Try five judge-ready scenarios</h2>
+          <p id="demo-description">Ambiguous deadline, three attachments, retry recovery, and a human checkpoint.</p>
+          <label class="demo-select-label" for="demo-case">Choose a scenario</label>
+          <select id="demo-case" class="demo-select">
+            <option value="parking-permit">Parking permit</option>
+            <option value="school-trip">School trip consent</option>
+            <option value="utility-hardship">Utility hardship</option>
+            <option value="dependency-outage">Dependency outage recovery</option>
+            <option value="revision-loop">Reject, revise, resume</option>
+          </select>
+          <p id="demo-guidance" class="demo-guidance">Choose a scenario, then follow the highlighted review action.</p>
+          <ul><li><b>7</b> observable agent stages</li><li><b>2</b> recovery paths demonstrated</li><li><b>2</b> resumable checkpoints</li></ul>
+          <button id="demo-button" class="secondary-button">Run selected demo <span>→</span></button>
+          <small>No API key needed</small>
+        </aside>
+      </div>
+    </section>
+
+    <section id="loading-view" class="loading-view hidden" aria-live="polite">
+      <div class="loading-card">
+        <div class="paper-animation"><div class="scan-line"></div><span>FORM</span><i></i><i></i><i></i><b>✦</b></div>
+        <div class="eyebrow"><span>✦</span> PaperworkPilot is working</div>
+        <h2 id="loading-title">Reading every section…</h2>
+        <p id="loading-detail">Finding instructions, deadlines, and required fields.</p>
+        <div id="agent-steps" class="agent-steps"></div>
+      </div>
+    </section>
+
+    <section id="approval-view" class="shell approval-view hidden" aria-live="polite">
+      <div class="approval-layout">
+        <section class="checkpoint-card">
+          <div class="checkpoint-icon" aria-hidden="true">Ⅱ</div>
+          <div class="eyebrow amber"><span>●</span> Graph paused · State saved</div>
+          <h1 id="review-title">Human judgment required.</h1>
+          <p id="review-message">PaperworkPilot found something it will not guess. Review the evidence before the graph continues.</p>
+          <div id="review-issues" class="review-issues"></div>
+          <label class="review-note-label" for="review-note">Reviewer note <span>optional</span></label>
+          <textarea id="review-note" class="review-note" placeholder="Example: Keep the deadline warning in the final checklist."></textarea>
+          <div id="review-error" class="error-message hidden" role="alert"></div>
+          <div class="approval-actions">
+            <button id="approve-button" class="primary-button"><span>Approve and resume agent</span><b aria-hidden="true">→</b></button>
+            <button id="reject-button" class="ghost-button">Request changes</button>
+            <button id="stop-button" class="ghost-button danger-button">Stop run</button>
+          </div>
+          <p class="privacy-line">Nothing is submitted. Approval only allows the agent to assemble your plan.</p>
+        </section>
+        <aside class="trace-card">
+          <div class="trace-heading"><span>LIVE AGENT TRACE</span><b id="trace-coverage">0% evidence</b></div>
+          <div id="review-trace" class="trace-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="results-view" class="shell results-view hidden">
+      <div class="results-header">
+        <div><div class="eyebrow"><span>✓</span> Analysis complete</div><h1 id="result-title"></h1><p id="result-purpose"></p></div>
+        <button id="new-form-button" class="ghost-button">← Analyze another form</button>
+      </div>
+      <section class="proof-card" aria-labelledby="proof-title">
+        <div class="proof-heading"><div><span>AGENT RUN RECEIPT</span><h2 id="proof-title">Every important step is inspectable.</h2></div><div id="proof-metrics" class="proof-metrics"></div></div>
+        <div id="result-trace" class="result-trace"></div>
+      </section>
+      <div id="summary-card" class="summary-card"></div>
+      <div class="result-grid">
+        <div class="result-main">
+          <section class="result-section"><div class="section-heading"><div><span class="section-number">1</span><h2>Required information</h2></div><span id="field-count" class="count-pill"></span></div><div id="fields-list" class="item-list"></div></section>
+          <section class="result-section"><div class="section-heading"><div><span class="section-number">2</span><h2>Documents to gather</h2></div><span id="document-count" class="count-pill"></span></div><div id="documents-list" class="item-list"></div></section>
+          <section class="result-section"><div class="section-heading"><div><span class="section-number">3</span><h2>Submission checklist</h2></div><span id="checklist-progress" class="count-pill"></span></div><div id="checklist-list" class="checklist-list"></div></section>
+        </div>
+        <aside class="result-aside">
+          <section class="next-card"><span>YOUR NEXT BEST STEP</span><h3 id="next-action"></h3></section>
+          <section class="warning-card"><h3>Things to double-check</h3><div id="warnings-list"></div></section>
+          <section class="confidence-card"><h3>About this analysis</h3><p id="confidence-note"></p><small>PaperworkPilot provides practical guidance, not professional advice. Verify important details with the issuing organization.</small></section>
+          <div class="action-stack"><button id="copy-button" class="secondary-button">Copy checklist</button><button id="print-button" class="ghost-button">Print / save as PDF</button></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell"><span>PaperworkPilot Agent</span><p>Evidence first. Human approved. Nothing submitted automatically.</p></footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
